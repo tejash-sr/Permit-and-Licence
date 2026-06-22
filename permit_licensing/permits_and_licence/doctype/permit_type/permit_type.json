@@ -1,0 +1,58 @@
+{
+ "doctype": "DocType",
+ "name": "Permit Type",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "is_submittable": 0,
+ "autoname": "field:permit_type_name",
+ "naming_rule": "By fieldname",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "permit_type_name",
+   "label": "Permit Type Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "e.g. Trade License, Building Permit, Food License"
+  },
+  {
+   "fieldname": "requires_location",
+   "label": "Requires Location",
+   "fieldtype": "Check",
+   "default": "1",
+   "description": "If checked, Permit save is blocked without a linked Location. Unchecked for mobile/no-fixed-premise permit types (v2)."
+  },
+  {
+   "fieldname": "renewal_behavior",
+   "label": "Renewal Behavior",
+   "fieldtype": "Select",
+   "options": "Annual\nConsumed\nActiveLifecycle",
+   "reqd": 1,
+   "description": "Annual = fixed renewal cycle. Consumed = no renewal, permit ends at project completion. ActiveLifecycle = recurring inspection/violation cycle (e.g. Food License)."
+  },
+  {
+   "fieldname": "is_transactional",
+   "label": "Is Transactional",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "v2 hook. Reserved for shipment/per-event permit types (Customs). Not used in v1 logic."
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Is Active",
+   "fieldtype": "Check",
+   "default": "1"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}
