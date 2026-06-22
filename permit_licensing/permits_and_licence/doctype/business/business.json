@@ -1,0 +1,47 @@
+{
+ "doctype": "DocType",
+ "name": "Business",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "is_submittable": 0,
+ "autoname": "field:commercial_registration_number",
+ "naming_rule": "By fieldname",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "business_name",
+   "label": "Business Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "commercial_registration_number",
+   "label": "Commercial Registration Number",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "DET CR number. 1:1 with legal entity in mainland Dubai. Absorbs the DET master-record concept; no separate BusinessAgencyRegistration entity in v1."
+  },
+  {
+   "fieldname": "cr_issue_date",
+   "label": "CR Issue Date",
+   "fieldtype": "Date"
+  },
+  {
+   "fieldname": "cr_expiry_date",
+   "label": "CR Expiry Date",
+   "fieldtype": "Date"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}

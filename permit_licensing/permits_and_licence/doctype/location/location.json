@@ -1,0 +1,70 @@
+{
+ "doctype": "DocType",
+ "name": "Location",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "is_submittable": 0,
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "business",
+   "label": "Business",
+   "fieldtype": "Link",
+   "options": "Business",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "location_type",
+   "label": "Location Type",
+   "fieldtype": "Select",
+   "options": "HQ\nBranch\nProjectSite\nOutlet",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "plot_number",
+   "label": "Plot Number",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "makani_number",
+   "label": "Makani Number",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "ejari_reference",
+   "label": "Ejari Reference",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "address_line_1",
+   "label": "Address Line 1",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "location_description",
+   "label": "Location Description",
+   "fieldtype": "Small Text",
+   "description": "Free-text fallback, e.g. 'Al Quoz Industrial, unbuilt plot' when no formal address exists yet."
+  },
+  {
+   "fieldname": "is_primary",
+   "label": "Is Primary",
+   "fieldtype": "Check",
+   "default": "0",
+   "description": "Max 1 per Business, enforced in validate(). Marks the registered/HQ address."
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}
