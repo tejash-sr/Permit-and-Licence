@@ -1,0 +1,72 @@
+{
+ "doctype": "DocType",
+ "name": "Stage Definition",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "is_submittable": 0,
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "permit_type",
+   "label": "Permit Type",
+   "fieldtype": "Link",
+   "options": "Permit Type",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "stage_name",
+   "label": "Stage Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "stage_order",
+   "label": "Stage Order",
+   "fieldtype": "Int",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Grouping key. Multiple rows sharing the same stage_order + permit_type form a PARALLEL completion group (e.g. Building Permit's DCD+DEWA+RTA NOCs). All rows in a group must complete before the next stage_order unlocks."
+  },
+  {
+   "fieldname": "agency",
+   "label": "Agency",
+   "fieldtype": "Link",
+   "options": "Agency",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "sla_value",
+   "label": "SLA Value",
+   "fieldtype": "Int",
+   "description": "Numeric duration. Pair with sla_unit. Mark estimated/unverified in description if sourced from a single reference."
+  },
+  {
+   "fieldname": "sla_unit",
+   "label": "SLA Unit",
+   "fieldtype": "Select",
+   "options": "Minutes\nHours\nDays",
+   "description": "v1 permit types use Days. Minutes/Hours reserved for v2 transactional (Customs channel SLAs)."
+  },
+  {
+   "fieldname": "is_blocking",
+   "label": "Is Blocking",
+   "fieldtype": "Check",
+   "default": "1",
+   "description": "If checked, this stage must complete before advancement. Mirrors StageCondition.blocking_flag at the template level."
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}
