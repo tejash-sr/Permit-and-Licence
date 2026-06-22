@@ -1,0 +1,51 @@
+{
+ "doctype": "DocType",
+ "name": "Agency",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "is_submittable": 0,
+ "autoname": "field:agency_code",
+ "naming_rule": "By fieldname",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "agency_name",
+   "label": "Agency Name",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "agency_code",
+   "label": "Agency Code",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "Short code, e.g. DET, DM, DCD, DEWA, RTA, DHA"
+  },
+  {
+   "fieldname": "agency_type",
+   "label": "Agency Type",
+   "fieldtype": "Select",
+   "options": "Municipal\nSafety\nUtility\nRevenue\nLabour\nHealth\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "is_active",
+   "label": "Is Active",
+   "fieldtype": "Check",
+   "default": "1"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}
