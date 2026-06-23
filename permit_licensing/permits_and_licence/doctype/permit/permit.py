@@ -1,6 +1,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import now_datetime
+from frappe.model.workflow import apply_workflow
 
 
 class Permit(Document):
@@ -96,6 +97,22 @@ class Permit(Document):
 				return False
 		return True
 
+	def check_and_advance_workflow(self):
+		"""
+		Auto-applies the next workflow action when all stages at the
+		current stage_order are complete. Deliberately minimal: only
+		auto-fires 'Start Review'. Approve/Activate remain human-triggered
+		to preserve the AI/system-assists-officer-decides principle.
+		"""
+		current_order = self.get_current_stage_order()
+		if current_order is None:
+			return
+		if self.can_advance_stage(current_order):
+			action_map = {"Applied": "Start Review"}
+			action = action_map.get(self.status)
+			if action:
+				apply_workflow(self, action)
+
 	# ------------------------------------------------------------------
 	# Transition logging
 	# ------------------------------------------------------------------
@@ -117,7 +134,7 @@ class Permit(Document):
 				"reason": reason or "",
 			},
 		)
-		
+
 	def check_and_log_status_transition(self):
 		"""
 		Wires log_transition() into the save cycle.
@@ -125,14 +142,11 @@ class Permit(Document):
 		"""
 		if self.is_new():
 			return
-		# Fetch the currently persisted status from DB before this save
 		old_status = frappe.db.get_value(self.doctype, self.name, "status")
 		if old_status and old_status != self.status:
 			self.log_transition(
 				old_state=old_status,
 				new_state=self.status,
 				reason=f"Status changed from {old_status} to {self.status}",
-				stage_reference=None
+				stage_reference=None,
 			)
-				
-	

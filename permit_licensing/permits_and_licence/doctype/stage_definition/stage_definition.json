@@ -2,6 +2,7 @@
  "doctype": "DocType",
  "name": "Stage Definition",
  "module": "Permits and Licence",
+ "title_field": "stage_name",
  "custom": 0,
  "is_submittable": 0,
  "autoname": "hash",
