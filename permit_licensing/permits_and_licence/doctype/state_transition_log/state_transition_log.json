@@ -1,0 +1,56 @@
+{
+ "doctype": "DocType",
+ "name": "State Transition Log",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "istable": 1,
+ "is_submittable": 0,
+ "track_changes": 0,
+ "fields": [
+  {
+   "fieldname": "stage_reference",
+   "label": "Stage Reference",
+   "fieldtype": "Link",
+   "options": "Stage Definition",
+   "in_list_view": 1,
+   "description": "Maps this log entry to its logical stage. Null = permit-level transition (e.g. Draft → Applied)."
+  },
+  {
+   "fieldname": "transition_date",
+   "label": "Transition Date",
+   "fieldtype": "Datetime",
+   "reqd": 1,
+   "in_list_view": 1,
+   "default": "Now"
+  },
+  {
+   "fieldname": "transitioned_by",
+   "label": "Transitioned By",
+   "fieldtype": "Link",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "old_state",
+   "label": "Old State",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "new_state",
+   "label": "New State",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reason",
+   "label": "Reason",
+   "fieldtype": "Small Text",
+   "description": "Mandatory on rejection/return transitions; optional on advancement."
+  }
+ ],
+ "permissions": []
+}

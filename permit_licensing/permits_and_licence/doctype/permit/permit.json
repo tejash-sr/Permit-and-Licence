@@ -1,0 +1,162 @@
+{
+ "doctype": "DocType",
+ "name": "Permit",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "is_submittable": 0,
+ "autoname": "naming_series:",
+ "naming_rule": "By Naming Series",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "label": "Series",
+   "fieldtype": "Select",
+   "options": "PRM-.YYYY.-.#####",
+   "default": "PRM-.YYYY.-.#####",
+   "reqd": 1
+  },
+
+  {
+   "fieldname": "section_applicant",
+   "label": "Applicant Details",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "business",
+   "label": "Business",
+   "fieldtype": "Link",
+   "options": "Business",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "permit_type",
+   "label": "Permit Type",
+   "fieldtype": "Link",
+   "options": "Permit Type",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "options": "Draft\nApplied\nUnder Review\nConditionally Approved\nApproved\nActive\nSuspended\nExpired\nCancelled",
+   "default": "Draft",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "application_date",
+   "label": "Application Date",
+   "fieldtype": "Date",
+   "default": "Today"
+  },
+
+  {
+   "fieldname": "section_location",
+   "label": "Location",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "location",
+   "label": "Location",
+   "fieldtype": "Link",
+   "options": "Location",
+   "description": "Nullable in schema. v1 business rule: mandatory for all v1 permit types (requires_location enforced in validate()). Hook kept nullable for v2 mobile/roaming permits."
+  },
+
+  {
+   "fieldname": "section_stages",
+   "label": "Approval Stages",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "stages",
+   "label": "Stages",
+   "fieldtype": "Table",
+   "options": "Stage Instance",
+   "reqd": 0
+  },
+
+  {
+   "fieldname": "section_conditions",
+   "label": "Stage Conditions",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "stage_conditions",
+   "label": "Stage Conditions",
+   "fieldtype": "Table",
+   "options": "Stage Condition",
+   "reqd": 0,
+   "description": "Flattened to Permit level (Frappe does not support nested child tables). Each row carries stage_reference to map back to its logical stage."
+  },
+
+  {
+   "fieldname": "section_log",
+   "label": "Transition Log",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "state_transitions",
+   "label": "State Transitions",
+   "fieldtype": "Table",
+   "options": "State Transition Log",
+   "reqd": 0,
+   "description": "Append-only audit trail. Never edit rows manually."
+  },
+
+  {
+   "fieldname": "section_v2_hooks",
+   "label": "v2 Hooks (Internal)",
+   "fieldtype": "Section Break",
+   "collapsible": 1,
+   "collapsible_depends_on": "0"
+  },
+  {
+   "fieldname": "is_transactional",
+   "label": "Is Transactional",
+   "fieldtype": "Check",
+   "default": "0",
+   "hidden": 1,
+   "description": "v2 hook. Reserved for shipment/per-event permit types. Not used in v1 logic."
+  },
+  {
+   "fieldname": "subject_party_type",
+   "label": "Subject Party Type",
+   "fieldtype": "Link",
+   "options": "DocType",
+   "hidden": 1,
+   "description": "Dynamic Link anchor. v2 hook — subject_party_id/type relationship semantics with PermitParty are unresolved and deferred. Do not use in v1 logic."
+  },
+  {
+   "fieldname": "subject_party_id",
+   "label": "Subject Party ID",
+   "fieldtype": "Dynamic Link",
+   "options": "subject_party_type",
+   "hidden": 1,
+   "description": "v2 hook. Points to the individual the permit is about (e.g. employee in a Kafala-style permit), distinct from PermitParty (who is involved/liable). Deferred."
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 0,
+   "cancel": 0,
+   "amend": 0
+  }
+ ]
+}
