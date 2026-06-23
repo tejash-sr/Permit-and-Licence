@@ -1,0 +1,79 @@
+{
+ "doctype": "DocType",
+ "name": "Stage Instance",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "istable": 1,
+ "is_submittable": 0,
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "stage_definition",
+   "label": "Stage Definition",
+   "fieldtype": "Link",
+   "options": "Stage Definition",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "stage_name",
+   "label": "Stage Name",
+   "fieldtype": "Data",
+   "fetch_from": "stage_definition.stage_name",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "stage_order",
+   "label": "Stage Order",
+   "fieldtype": "Int",
+   "fetch_from": "stage_definition.stage_order",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "agency",
+   "label": "Agency",
+   "fieldtype": "Link",
+   "options": "Agency",
+   "fetch_from": "stage_definition.agency",
+   "fetch_if_empty": 1,
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "assigned_actor",
+   "label": "Assigned Actor",
+   "fieldtype": "Link",
+   "options": "User",
+   "description": "Only Frappe Users. PIC, Consultant, PRO roles live in PermitParty — not here."
+  },
+  {
+   "fieldname": "status",
+   "label": "Status",
+   "fieldtype": "Select",
+   "options": "Pending\nIn Progress\nCompleted\nRejected\nSkipped",
+   "default": "Pending",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "started_on",
+   "label": "Started On",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "completed_on",
+   "label": "Completed On",
+   "fieldtype": "Datetime"
+  },
+  {
+   "fieldname": "remarks",
+   "label": "Remarks",
+   "fieldtype": "Small Text"
+  }
+ ],
+ "permissions": []
+}
