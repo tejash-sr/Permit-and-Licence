@@ -1,0 +1,66 @@
+{
+ "doctype": "DocType",
+ "name": "Permit Party",
+ "module": "Permits and Licence",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "permit",
+   "label": "Permit",
+   "fieldtype": "Link",
+   "options": "Permit",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "party_role",
+   "label": "Party Role",
+   "fieldtype": "Select",
+   "options": "Applicant\nConsultant\nPRO\nPIC\nOfficer",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Applicant = filing party. Consultant/PRO = preparatory. PIC = legally named compliance officer (Food License). Officer = government reviewer."
+  },
+  {
+   "fieldname": "party_identifier",
+   "label": "Party Identifier",
+   "fieldtype": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Emirates ID, trade license number, staff ID, or name — whatever uniquely identifies this party in context."
+  },
+  {
+   "fieldname": "party_name",
+   "label": "Party Name",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "liability_type",
+   "label": "Liability Type",
+   "fieldtype": "Select",
+   "options": "Preparatory\nFilingAccountable\nFinanciallyLiable",
+   "reqd": 1,
+   "description": "Preparatory = helps prepare but bears no legal filing liability. FilingAccountable = legally accountable for what is filed. FinanciallyLiable = bears financial obligation (fees, bonds). See v2 note: full liability model deferred."
+  },
+  {
+   "fieldname": "notes",
+   "label": "Notes",
+   "fieldtype": "Small Text"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}
